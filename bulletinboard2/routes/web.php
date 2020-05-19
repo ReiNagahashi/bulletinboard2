@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+// PostController
+Route::resource('posts','PostController');
+
+Route::get('/home', 'HomeController@index')->name('home');
