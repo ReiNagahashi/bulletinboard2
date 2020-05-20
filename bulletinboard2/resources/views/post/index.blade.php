@@ -10,9 +10,19 @@
                 </thead>
                 @foreach ($posts as $post)
                     <tbody>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ $post->description }}</td>
-                            <td>{{ $post->user->name }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->description }}</td>
+                        <td>{{ $post->user->name }}</td>
+                        @if($post->user_id === Auth::user()->id)
+                            <td><a href="{{ route('posts.edit',['post' => $post->id]) }}">編集する</a></td>
+                            <td>
+                                <form action="{{route('posts.destroy',['post' => $post->id])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-xs">削除する</button>
+                                </form>
+                            </td>
+                        @endif
                     </tbody>
                 @endforeach
             </table>

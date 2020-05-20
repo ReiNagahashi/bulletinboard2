@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware'=>'auth'],function(){
 // PostController
 Route::resource('posts','PostController');
+
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -83,7 +83,13 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+
+        $post->save();
+
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -92,8 +98,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect(route('posts.index'));
     }
 }

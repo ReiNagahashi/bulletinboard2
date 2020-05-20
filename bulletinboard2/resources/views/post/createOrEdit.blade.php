@@ -9,7 +9,7 @@
             </ul>
         @endif
 
-        <form action="{{isset($post)? route('posts.update',['id'=>$post->id]) : route('posts.store')}}" method="POST">
+        <form action="{{isset($post)? route('posts.update',['post'=>$post->id]) : route('posts.store')}}" method="POST">
             @csrf
             @if(isset($post))
                 @method('PUT')
